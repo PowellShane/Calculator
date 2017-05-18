@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Calculator </title>
+    <script type="text/javascript">
+        // Calculator
+        // Main
+        function calculateNumber() {
+            // Read Data
+            var returnedUserData = readData();
+            alert("returnedUserData: " + returnedUserData);
+            // Calculate
+            var returnedCalcResult = calculate(returnedUserData[0], returnedUserData[1], returnedUserData[2]);
+            // Display Results
+            displayResult(returnedCalcResult);
+        }
+        // Read Inputs (Input)
+        function readData() {
+            // Examples
+            var inputTags = document.getElementsByTagName("input");
+            alert("inputTags: " + inputTags);
+            for (var i = 0; i < inputTags.length; i++) {
+                alert("i: " + i);
+                alert("inputTags[i]: " + inputTags[i].value);
+            }
+            var userData = new Array();
+            // Operand 1
+            var number1 = document.getElementById("op1").value;
+            alert("number1: " + number1);
+            userData[0] = number1;
+            // Operand 2
+            var number2 = document.getElementById("op2").value;
+            alert("number2: " + number2);
+            userData[1] = number2;
+            // Calculation
+            var mathCalc = document.getElementById("math").value;
+            alert("mathCalc: " + mathCalc);
+            userData[2] = mathCalc;
+            return userData;
+        }
+        // Calculate (Processing)
+        function calculate(number1, number2, mathCalc) {
+            var resultCalc = 0;
+            if ("Add" == mathCalc) {
+                resultCalc = add(number1, number2);
+            }
+            else if ("Sub" == mathCalc) {
+                resultCalc = subtract(number1, number2);
+            }
+            else if ("Mul" == mathCalc) {
+                resultCalc = multiply(number1, number2);
+            }
+            else if ("Div" == mathCalc) {
+                resultCalc = divide(number1, number2);
+            }
+            alert("resultCalc: " + resultCalc);
+            return resultCalc;
+        }
+
+        function add(op1, op2) {
+            var result = parseInt(op1) + parseInt(op2);
+            return result;
+        }
+
+        function subtract(op1, op2) {
+            var result = op1 - op2;
+            return result;
+        }
+
+        function multiply(op1, op2) {
+            var result = op1 * op2;
+            return result;
+        }
+
+        function divide(op1, op2) {
+            var result = op1 / op2;
+            return result;
+        }
+        // Display Result (Output)
+        function displayResult(result) {
+            alert("inside displayResult")
+            alert("The result is " + result);
+            document.write("The result is " + result);
+        }
+    </script>
+</head>
+
+<body>
+    <Main>
+        <form id="=calculate">
+            <label for="op1">Operand 1</label>
+            <input id="op1" type="number" placeholder="Number" />
+            <br />
+            <label for="op2">Operand 2</label>
+            <input id="op2" type="number" required="true" />
+            <br />
+            <select id="math">
+                <option value="Add">Add</option>
+                <option value="Sub">Subtract</option>
+                <option value="Mul">Multipy</option>
+                <option value="Div">Divide</option>
+            </select>
+            <br />
+            <button id="doMath" type="submit" onclick="calculateNumber(); " autofocus="true">Do Math</button>
+        </form>
+    </Main>
+</body>
+
+</html>
